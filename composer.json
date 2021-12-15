@@ -1,0 +1,17 @@
+{
+    "name": "ibu/ebfitness",
+    "description": "fitness page for project",
+    "license": "apache2.4.46",
+    "autoload": {
+        "psr-4": {
+            "Ibu\\Ebfitness\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "emirb1208",
+            "email": "emir.beba@stu.ibu.edu.ba"
+        }
+    ],
+    "require": {}
+}
