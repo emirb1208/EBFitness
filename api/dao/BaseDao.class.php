@@ -8,6 +8,7 @@ public function __construct() {
   try {
     $this->connection = new PDO("mysql:host=".Config::DB_HOST.";dbname=".Config::DB_SCHEME, Config::DB_USERNAME, Config::DB_PASSWORD);
     $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected";
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
