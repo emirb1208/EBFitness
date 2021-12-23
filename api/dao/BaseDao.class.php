@@ -3,6 +3,7 @@ require_once dirname(__FILE__)."/../config.php";
 
 class BaseDao {
 protected $connection;
+
 public function __construct() {
 
   try {
