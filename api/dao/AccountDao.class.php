@@ -12,8 +12,14 @@ class AccountDao extends BaseDao {
   }
 
   public function update_account($account_id, $account){
-    $sql = "UPDATE accounts SET name = :name, surname = :surname, age = :age, gender = :gender, contact = :contact, address = :address, email = :email WHERE account_id = :account_id";
-    $stmt= $this->connection->prepare($sql);
+    $query = "UPDATE accounts SET ";
+    foreach ($account as $name => $value) {
+        $query .= $name ."= :". $name. ", ";
+    }
+    $query = substr($query, 0, -2);
+    $query .= " WHERE account_id = :account_id";
+
+    $stmt= $this->connection->prepare($query);
     $account['account_id'] = $account_id;
     $stmt->execute($account);
   }
