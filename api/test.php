@@ -14,13 +14,13 @@ $account_dao = new AccountDao();
 $account = [
   "name" => "Dzelila",
   "surname" => "Mehanovic",
-  "age" => 30,
+  "age" => 28,
   "gender" => "F",
-  "contact" => 0611145,
-  "address" => "NN",
+  "contact" => 12345,
+  "address" => "NNN",
   "email" => "dzelila.mehanovic@ibu.edu.ba"
 ];
-$account = $account_dao -> add_account($account);
+$account = $account_dao -> update_account(10, $account);
 
 print_r($account);
 
