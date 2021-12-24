@@ -11,21 +11,16 @@ class AccountDao extends BaseDao {
     return $account;
   }
 
-  public function update_account($account_id, $account){
-    $query = "UPDATE accounts SET ";
-    foreach ($account as $name => $value) {
-        $query .= $name ."= :". $name. ", ";
-    }
-    $query = substr($query, 0, -2);
-    $query .= " WHERE account_id = :account_id";
-
-    $stmt= $this->connection->prepare($query);
-    $account['account_id'] = $account_id;
-    $stmt->execute($account);
+  public function update_account($id, $account){
+    $this->update("accounts", $id, $account);
   }
 
-  public function get_account_by_id($account_id) {
-    return $this->query_unique("SELECT * FROM users WHERE account_id = :account_id", ["account_id" => $account_id]);
+  public function update_account_by_email($email, $account){
+    $this->update("accounts", $email, $account, "email");
+  }
+
+  public function get_account_by_id($id) {
+    return $this->query_unique("SELECT * FROM accounts WHERE id = :id", ["id" => $id]);
   }
 
   public function get_account_by_email($email){

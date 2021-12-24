@@ -12,11 +12,11 @@ $account_dao = new AccountDao();
 //$account = $account_dao -> get_account_by_email("emir.beba@stu.ibu.edu.ba");
 
 $account = [
-    "contact" => 0000
+    "contact" => 121212
 ];
 
 
-$account = $account_dao -> update_account(10, $account);
+$account = $account_dao -> update_account_by_email("dzelila.mehanovic@ibu.edu.ba", $account);
 
 print_r($account);
 
