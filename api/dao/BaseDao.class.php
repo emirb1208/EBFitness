@@ -65,8 +65,8 @@ public function update($id, $entity){
 }
 
 public function get_by_id($id){
-  return $this->query_unique("SELECT * FROM .$this->table WHERE id = :id", ["id" => $id]);
+  return $this->query_unique("SELECT * FROM ".$this->table." WHERE id = :id", ["id" => $id]);
 }
 
 }
- ?>
+?>

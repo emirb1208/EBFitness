@@ -1,15 +1,20 @@
 <?php
 require_once dirname(__FILE__)."/dao/AccountDao.class.php";
 require_once dirname(__FILE__)."/dao/UserDao.class.php";
+require_once dirname(__FILE__)."/dao/InstructorDao.class.php";
+require_once dirname(__FILE__)."/dao/FitnessGoalDao.class.php";
+require_once dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
-$user_dao = new UserDao();
+$dao = new WorkoutPlanDao();
 
-//$user = $user_dao -> update_user(13, ["username" => "Emir"]);
-$user_dao->update(15, [
-    "password" => "password1234"
+$workoutplan = [
+    "description" => "Here will be some description"
+];
+
+$dao->update(3, [
+  "description" => "Here will be some description"
 ]);
 
-$user = $user_dao-> get_by_id(15);
-print_r($user);
-
+$workoutplan = $dao->get_all_workout_plans();  //add($workoutplan);
+print_r($workoutplan);
 ?>
