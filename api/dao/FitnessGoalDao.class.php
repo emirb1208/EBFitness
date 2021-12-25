@@ -7,9 +7,5 @@ class FitnessDao extends BaseDao {
     parent::__construct("fitness_goals");
   }
 
-  public function get_all_fitness_goals(){
-    return $this->query("SELECT * FROM fitness_goals", []);
-  }
-
 }
 ?>

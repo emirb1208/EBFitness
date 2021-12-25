@@ -7,9 +7,5 @@ class UserDao extends BaseDao {
     parent::__construct("users");
   }
 
-  public function get_all_users(){
-    return $this->query("SELECT * FROM users", []);
-  }
-
 }
 ?>

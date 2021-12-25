@@ -7,8 +7,5 @@ class InstructorDao extends BaseDao {
     parent::__construct("instructors");
   }
 
-  public function get_all_instructors(){
-    return $this->query("SELECT * FROM instructors", []);
-  }
 }
 ?>
