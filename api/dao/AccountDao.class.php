@@ -4,11 +4,7 @@ require_once dirname(__FILE__)."/BaseDao.class.php";
 class AccountDao extends BaseDao {
 
   public function add_account($account) {
-    $sql = "INSERT INTO accounts (name, surname, age, gender, contact, address, email) VALUES (:name, :surname, :age, :gender, :contact, :address, :email)";
-    $stmt= $this->connection->prepare($sql);
-    $stmt->execute($account);
-    $account['id'] = $this->connection->lastInsertId();
-    return $account;
+    return $this->insert("accounts", $account);
   }
 
   public function update_account($id, $account){

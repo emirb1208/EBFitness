@@ -12,11 +12,29 @@ $account_dao = new AccountDao();
 //$account = $account_dao -> get_account_by_email("emir.beba@stu.ibu.edu.ba");
 
 $account = [
-    "contact" => 121212
+    "name" => "Armin123" ,
+    "surname" => "Sarak",
+    "age" => 28,
+    "gender" => "M",
+    "address" => "nn",
+    "contact" => 06031 ,
+    "email" => "arminsarak@gmail.com"
 ];
 
+//echo $query;
 
-$account = $account_dao -> update_account_by_email("dzelila.mehanovic@ibu.edu.ba", $account);
+
+
+/*$query .= " WHERE ${id_column} = :id";
+
+$stmt= $this->connection->prepare($query);
+$entity['id'] = $id;
+$stmt->execute($entity);
+}*/
+
+
+
+$account = $account_dao -> add_account($account);
 
 print_r($account);
 
