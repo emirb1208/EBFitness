@@ -7,14 +7,15 @@ require_once dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
 $dao = new WorkoutPlanDao();
 
-$workoutplan = [
-    "description" => "Here will be some description"
-];
+/*for ($i = 0; $i < 50; $i++){
+  $dao->add([
+    "name" => base64_encode(random_bytes(10)),
+    "description" => "Some description"
+  ]);
+}
+*/
 
-$dao->update(3, [
-  "description" => "Here will be some description"
-]);
+$workoutplans = $dao->get_all($_GET['offset'], $_GET['limit']);
+print_r($workoutplans);
 
-$workoutplan = $dao->get_all_workout_plans();  //add($workoutplan);
-print_r($workoutplan);
 ?>
