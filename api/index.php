@@ -3,9 +3,35 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once dirname(__FILE__)."/dao/BaseDao.class.php";
+require dirname(__FILE__).'/../vendor/autoload.php';
+require dirname(__FILE__)."/dao/AccountDao.class.php";
+require dirname(__FILE__)."/dao/UserDao.class.php";
+require dirname(__FILE__)."/dao/InstructorDao.class.php";
+require dirname(__FILE__)."/dao/FitnessGoalDao.class.php";
+require dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
-$emir = new BaseDao();
-echo "Hello from real API";
+Flight::route('/', function(){
+    echo 'Hello world!';
+});
+
+Flight::route('GET /accounts', function(){
+    $dao = new AccountDao();
+    $accounts = $dao->get_all(0,10);
+    Flight::json($accounts);
+});
+
+Flight::route('/hello3', function(){
+    echo 'Hello world!3';
+});
+
+Flight::route('/hello4', function(){
+    echo 'Hello world!4';
+});
+
+Flight::route('/hello5', function(){
+    echo 'Hello world!5';
+});
+
+Flight::start();
 
 ?>
