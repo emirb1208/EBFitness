@@ -16,6 +16,6 @@ $dao = new WorkoutPlanDao();
 */
 
 $workoutplans = $dao->get_all($_GET['offset'], $_GET['limit']);
-print_r($workoutplans);
-
+//print_r($workoutplans);
+echo json_encode($workoutplans, JSON_PRETTY_PRINT);
 ?>
