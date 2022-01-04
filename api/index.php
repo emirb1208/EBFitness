@@ -10,12 +10,19 @@ require_once dirname(__FILE__)."/dao/InstructorDao.class.php";
 require_once dirname(__FILE__)."/dao/FitnessGoalDao.class.php";
 require_once dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
+/* Utility function for reading query parameters from URL  */
+Flight::map('query', function($name, $default_value = NULL){
+  $request = Flight::request();
+  $query_param = @$request->query->getData()[$name];
+  $query_param = $query_param ? $query_param : $default_value;
+  return $query_param;
+});
 
+/* Register DAO layer*/
 Flight::register('accountDao', 'AccountDao');
 
+/* Include all routes */
 require_once dirname(__FILE__)."/routes/accounts.php";
 
-
 Flight::start();
-
 ?>
