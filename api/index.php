@@ -10,29 +10,29 @@ require dirname(__FILE__)."/dao/InstructorDao.class.php";
 require dirname(__FILE__)."/dao/FitnessGoalDao.class.php";
 require dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
+Flight::register('accountDao', 'AccountDao');
+
 Flight::route('GET /accounts', function(){
-    $dao = new AccountDao();
-    $accounts = $dao->get_all(0,10);
-    Flight::json($accounts);
+    Flight::json(Flight::accountDao()->get_all(0,10));
 });
 
 Flight::route('GET /accounts/@id', function($id){
-    $dao = new AccountDao();
-    $account = $dao->get_by_id($id);
+    Flight::json(Flight::accountDao()->get_by_id($id));
+});
+
+Flight::route('POST /accounts', function(){
+    $request = Flight::request()->data->getData();
+    Flight::json($Flight::accountDao()->add($data));
+});
+
+Flight::route('PUT /accounts/@id', function($id){
+    $request = Flight::request();
+    $data = $request->data->getData();
+    Flight::accountDao()->update($id, $data);
+    $account = Flight::accountDao()->get_by_id($id);
     Flight::json($account);
 });
 
-Flight::route('/hello3', function(){
-    echo 'Hello world!3';
-});
-
-Flight::route('/hello4', function(){
-    echo 'Hello world!4';
-});
-
-Flight::route('/hello5', function(){
-    echo 'Hello world!5';
-});
 
 Flight::start();
 
