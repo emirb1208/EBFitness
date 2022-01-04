@@ -13,7 +13,14 @@ class AccountDao extends BaseDao {
 
   public function get_account_by_email($email){
     return $this->query_unique("SELECT * FROM accounts WHERE email = :email", ["email" => $email]);
-    }
+  }
+
+  public function get_accounts($search, $offset, $limit){
+    return $this->query("SElECT *
+                         FROM accounts
+                         WHERE LOWER(name) LIKE CONCAT('%', :name, '%')
+                         LIMIT ${limit} OFFSET ${offset}", ["name" => strtolower($search)]);
+  }
 
 }
 ?>
