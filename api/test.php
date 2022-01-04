@@ -5,7 +5,7 @@ require_once dirname(__FILE__)."/dao/InstructorDao.class.php";
 require_once dirname(__FILE__)."/dao/FitnessGoalDao.class.php";
 require_once dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
-$dao = new WorkoutPlanDao();
+$dao = new UserDao();
 
 /*for ($i = 0; $i < 50; $i++){
   $dao->add([

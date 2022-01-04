@@ -10,14 +10,16 @@ require dirname(__FILE__)."/dao/InstructorDao.class.php";
 require dirname(__FILE__)."/dao/FitnessGoalDao.class.php";
 require dirname(__FILE__)."/dao/WorkoutPlanDao.class.php";
 
-Flight::route('/', function(){
-    echo 'Hello world!';
-});
-
 Flight::route('GET /accounts', function(){
     $dao = new AccountDao();
     $accounts = $dao->get_all(0,10);
     Flight::json($accounts);
+});
+
+Flight::route('GET /accounts/@id', function($id){
+    $dao = new AccountDao();
+    $account = $dao->get_by_id($id);
+    Flight::json($account);
 });
 
 Flight::route('/hello3', function(){
