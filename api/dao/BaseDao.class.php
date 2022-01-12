@@ -34,23 +34,23 @@ protected function insert($table, $entity) {
   $query = substr($query, 0, -2);
   $query .= ")";
   $stmt= $this->connection->prepare($query);
-  $stmt->execute($entity);
-  $account['id'] = $this->connection->lastInsertId();
+  $stmt->execute($entity); // sql injection prevention
+  $entity['id'] = $this->connection->lastInsertId();
   return $entity;
 }
 
-protected function execute_update($table, $id, $entity, $id_column = "id") {
-  $query = "UPDATE ${table} SET ";
-  foreach ($entity as $name => $value) {
+protected function execute_update($table, $id, $entity, $id_column = "id"){
+    $query = "UPDATE ${table} SET ";
+    foreach($entity as $name => $value){
       $query .= $name ."= :". $name. ", ";
-  }
-  $query = substr($query, 0, -2);
-  $query .= " WHERE ${id_column} = :id";
+    }
+    $query = substr($query, 0, -2);
+    $query .= " WHERE ${id_column} = :id";
 
-  $stmt= $this->connection->prepare($query);
-  $entity['id'] = $id;
-  $stmt->execute($entity);
-}
+    $stmt= $this->connection->prepare($query);
+    $entity['id'] = $id;
+    $stmt->execute($entity);
+ }
 
 protected function query($query, $params){
   $stmt = $this->connection->prepare($query);
@@ -67,8 +67,8 @@ public function add($entity){
   return $this->insert($this->table, $entity);
 }
 
-public function update($id, $entity){
-  $this->execute_update($this->table, $id, $entity);
+public function update($id, $entity, $id_column = "id"){
+  $this->execute_update($this->table, $id, $entity, $id_column);
 }
 
 public function get_by_id($id){
@@ -78,7 +78,6 @@ public function get_by_id($id){
 public function get_all($offset = 0, $limit = 25){
   return $this->query("SELECT * FROM ".$this->table." LIMIT ${limit} OFFSET ${offset}", []);
 }
-
 
 }
 ?>
