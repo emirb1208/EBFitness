@@ -12,27 +12,22 @@ require_once dirname(__FILE__)."/dao/UserDao.class.php";
 Flight::register('accountDao', 'AccountDao');
 
 Flight::route('GET /accounts', function(){
-  $accounts = Flight::accountDao()->get_all(0,10);
-  Flight::json($accounts);
+    Flight::json(Flight::accountDao()->get_all(0,10));
     /*$offset = Flight::query('offset', 0);
     $limit = Flight::query('limit', 10);
     $search = Flight::query('search');
-
     Flight::json(Flight::accountService()->get_accounts($search, $offset, $limit));
     */
 });
 
 Flight::route('GET /accounts/@id', function($id){
-    $account = Flight::accountDao()->get_by_id($id);
-    Flight::json($account);
-    //Flight::json(Flight::accountService()->get_by_id($id));
+    Flight::json(Flight::accountDao()->get_by_id($id));
 });
 
 
 Flight::route('POST /accounts', function(){
     $data = Flight::request()->data->getData();
-    $account = Flight::accountDao()->add($data);
-    Flight::json($account);
+    Flight::json(Flight::accountDao()->add($data));
     //Flight::json(Flight::accountService()->add($data));
 });
 
@@ -40,9 +35,7 @@ Flight::route('PUT /accounts/@id', function($id){
     $request = Flight::request();
     $data = $request->data->getData();
     Flight::accountDao()->update($id, $data);
-    $account = Flight::accountDao()->get_by_id($id);
-    Flight::json($account);
-    //$data = Flight::request()->data->getData();
+    Flight::json(Flight::accountDao()->get_by_id($id));
     //Flight::json(Flight::accountService()->update($id, $data));
 });
 
