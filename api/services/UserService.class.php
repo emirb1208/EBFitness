@@ -40,7 +40,20 @@ class UserService extends BaseService{
 
   } catch (\Exception $e) {
     $this->dao->rollBack();
-    throw $e;
+
+/* adding if statement due to using php 7 */
+    if (!function_exists('str_contains')) {
+    function str_contains(string $haystack, string $needle): bool
+    {
+        return '' === $needle || false !== strpos($haystack, $needle);
+    }
+}
+
+    if (str_contains($e->getMessage(), 'users.uq_user_email')) {
+        throw new Exception("Account with same email exists in the database", 400, $e);
+    }else{
+        throw $e;
+      }
   }
 
     // TODO: send email with some token
