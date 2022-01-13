@@ -1,12 +1,11 @@
 <?php
 
 Flight::route('GET /accounts', function(){
-        Flight::json(Flight::accountDao()->get_all(0,10));
-        /*$offset = Flight::query('offset', 0);
-        $limit = Flight::query('limit', 10);
-        $search = Flight::query('search');
-        Flight::json(Flight::accountService()->get_accounts($search, $offset, $limit));
-        */
+    $offset = Flight::query('offset', 0);
+    $limit = Flight::query('limit', 10);
+    $search = Flight::query('search');
+
+    Flight::json(Flight::accountService()->get_accounts($search, $offset, $limit));
     });
 
 Flight::route('GET /accounts/@id', function($id){
