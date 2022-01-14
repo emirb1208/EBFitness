@@ -9,6 +9,10 @@ class WorkoutPlanService extends BaseService{
     $this->dao = new WorkoutPlanDao();
   }
 
+  public function get_workout_plans(){
+    return $this->dao->get_all();
+  }
+
   public function add($workout_plan){
 
       try{
