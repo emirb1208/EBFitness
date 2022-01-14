@@ -9,13 +9,13 @@ class WorkoutPlanService extends BaseService{
     $this->dao = new WorkoutPlanDao();
   }
 
-  public function get_workout_plans($instructor_id, $offset, $limit, $search){
-    return $this->dao->get_workout_plans($instructor_id, $offset, $limit, $search);
+  public function get_workout_plans($instructor_id, $offset, $limit, $search, $order){
+    return $this->dao->get_workout_plans($instructor_id, $offset, $limit, $search, $order);
   }
 
   public function add($workout_plan){
-
       try{
+        $workout_plan['created_at'] = date(Config::DATE_FORMAT);
         return parent::add($workout_plan);
       } catch (\Exception $e){
         if (!function_exists('str_contains')) {

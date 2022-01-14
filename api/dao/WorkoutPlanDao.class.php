@@ -7,7 +7,8 @@ class WorkoutPlanDao extends BaseDao {
     parent::__construct("workout_plans");
   }
 
-  public function get_workout_plans($instructor_id, $offset, $limit, $search){
+  public function get_workout_plans($instructor_id, $offset, $limit, $search, $order){
+    list($order_column, $order_direction) = self::parse_order($order);
 
     $params = ["instructor_id" => $instructor_id];
     $query = "SELECT *
@@ -19,7 +20,7 @@ class WorkoutPlanDao extends BaseDao {
           $params['search'] = strtolower($search);
         }
 
-
+    $query .= "ORDER BY ${order_column} ${order_direction} ";
     $query .= "LIMIT ${limit} OFFSET ${offset}";
 
     return $this->query($query, $params);
