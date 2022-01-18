@@ -1,16 +1,17 @@
 <?php
-
+ /* Swagger documentation */
 /**
-* @OA\Info(title="", version="0.1")
+* @OA\Info(title="ebfitness API", version="0.1")
 * @OA\OpenApi(
-*     @OA\Server(url="http://localhost/ebfitness/api/", description="Development Environment" )
+*     @OA\Server(url="http://localhost/ebfitness/api/", description="Development Environment" ),
+*    @OA\Server(url="https://ebfitness.gym.ba/api/", description="Production Environment" )
 * )
 
  */
 
 /**
  * @OA\Get(
- *     path="/accounts",
+ *     path="/accounts", tags={"account"},
  *     @OA\Response(response="200", description="List accounts from database")
  * )
  */
@@ -24,14 +25,50 @@ Flight::route('GET /accounts', function(){
     Flight::json(Flight::accountService()->get_accounts($search, $offset, $limit, $order));
     });
 
+/**
+ * @OA\Get(path="/accounts/{id}", tags={"account"},
+ *     @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id", default=1, description="Id of account"),
+ *     @OA\Response(response="200", description="Fetch individual account")
+ * )
+ */
+
 Flight::route('GET /accounts/@id', function($id){
     Flight::json(Flight::accountService()->get_by_id($id));
 });
+
+/**
+ * @OA\Post(path="/accounts", tags={"account"},
+ *   @OA\RequestBody(description="Basic account info", required=true,
+ *       @OA\MediaType(mediaType="application/json",
+ *    			@OA\Schema(
+ *    				 @OA\Property(property="name", required="true", type="string", example="My Test Account",	description="Name of the account" ),
+ *    				 @OA\Property(property="status", type="string", example="ACTIVE",	description="Account status" )
+ *          )
+ *       )
+ *     ),
+ *  @OA\Response(response="200", description="Account that has been added into database with ID assigned.")
+ * )
+ */
 
 Flight::route('POST /accounts', function(){
     $data = Flight::request()->data->getData();
     Flight::json(Flight::accountService()->add($data));
 });
+
+/**
+ * @OA\Put(path="/accounts/{id}", tags={"account"},
+ *   @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id", default=1),
+ *   @OA\RequestBody(description="Basic account info that is going to be updated", required=true,
+ *       @OA\MediaType(mediaType="application/json",
+ *    			@OA\Schema(
+ *    				 @OA\Property(property="name", required="true", type="string", example="My Test Account",	description="Name of the account" ),
+ *    				 @OA\Property(property="status", type="string", example="ACTIVE",	description="Account status" )
+ *          )
+ *       )
+ *     ),
+ *     @OA\Response(response="200", description="Update account based on id")
+ * )
+ */
 
 Flight::route('PUT /accounts/@id', function($id){
     $data = Flight::request()->data->getData();

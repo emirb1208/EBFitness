@@ -24,7 +24,6 @@ Flight::map('query', function($name, $default_value = NULL){
   return $query_param;
 });
 
-
 Flight::route('GET /swagger', function(){
 
   $openapi = @\OpenApi\scan(dirname(__FILE__)."/routes");
