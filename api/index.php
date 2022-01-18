@@ -12,7 +12,7 @@ require_once dirname(__FILE__)."/services/WorkoutPlanService.class.php";
 
 /* error handling for our API */
 /*Flight::map('error', function(\Throwable $ex){
-  Flight::json(["message" => $ex->getMessage()], $ex->getCode());
+  Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
 });
 */
 
