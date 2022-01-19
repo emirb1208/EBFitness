@@ -14,12 +14,11 @@ class UserService extends BaseService{
   }
 
   public function reset($user){
-  $db_user = $this->dao->get_user_by_token($user['token']);
+    $db_user = $this->dao->get_user_by_token($user['token']);
 
-  if (!isset($db_user['id'])) throw new Exception("Invalid token", 400);
+    if (!isset($db_user['id'])) throw new Exception("Invalid token", 400);
 
-  $this->dao->update($db_user['id'], ['password' => md5($user['password'])]);
-
+    $this->dao->update($db_user['id'], ['password' => md5($user['password'])]);
 }
 
   public function login($user){
@@ -88,7 +87,7 @@ class UserService extends BaseService{
   public function confirm($token){
     $user = $this->dao->get_user_by_token($token);
 
-    if(!isset($user['id'])) throw Exception("Invalid token");
+    if(!isset($user['id'])) throw new Exception("Invalid token");
 
     $this->dao->update($user['id'], ["status" => "ACTIVE"]);
     $this->accountDao->update($user['account_id'], ["status" => "ACTIVE"]);
