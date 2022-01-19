@@ -13,6 +13,21 @@ class UserService extends BaseService{
     $this->accountDao = new AccountDao();
   }
 
+  public function login($user){
+    $db_user = $this->dao->get_user_by_email($user['email']);
+
+    if (!isset($db_user['id'])) throw new Exception("User doesn't exists", 400);
+
+    if ($db_user['status'] != 'ACTIVE') throw new Exception("Account not active", 400);
+
+    $account = $this->accountDao->get_by_id($db_user['account_id']);
+    if (!isset($account['id']) || $account['status'] != 'ACTIVE') throw new Exception("Account not active", 400);
+
+    if ($db_user['password'] != md5($user['password'])) throw new Exception("Incorrect password", 400);
+
+    return $db_user;
+  }
+
   public function register($user){
     if(!isset($user['account'])) throw new Exception("Account field is required");
 
@@ -30,7 +45,7 @@ class UserService extends BaseService{
       "account_id" => $account['id'],
       "name" => $user['name'],
       "email" => $user['email'],
-      "password" => $user['password'],
+      "password" => md5($user['password']),
       "status" => "PENDING",
       "role" => "USER",
       "created_at" => date(Config::DATE_FORMAT),
