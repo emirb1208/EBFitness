@@ -49,4 +49,23 @@ Flight::route('GET /users/@id', function($id){
     $user = Flight::userService()->get_by_id($id);
     Flight::json($user);
 });
+
+/**
+ * @OA\Post(path="/users/reset", tags={"users"}, description="Reset users password using recovery token",
+ *   @OA\RequestBody(description="Basic user info", required=true,
+ *       @OA\MediaType(mediaType="application/json",
+ *    			@OA\Schema(
+ *    				 @OA\Property(property="token", required="true", type="string", example="123",	description="Recovery token" ),
+ *    				 @OA\Property(property="password", required="true", type="string", example="123",	description="New password" )
+ *          )
+ *       )
+ *     ),
+ *  @OA\Response(response="200", description="Message that user has changed password.")
+ * )
+ */
+Flight::route('POST /users/reset', function(){
+  $data = Flight::request()->data->getData();
+  Flight::userService()->reset($data);
+  Flight::json(["message" => "Your password has been changed"]);
+});
 ?>
