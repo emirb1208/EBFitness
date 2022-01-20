@@ -8,7 +8,7 @@ require_once dirname(__FILE__)."/services/AccountService.class.php";
 require_once dirname(__FILE__)."/services/UserService.class.php";
 require_once dirname(__FILE__)."/services/WorkoutPlanService.class.php";
 
-/*Flight::set('flight.log_errors', TRUE);
+//Flight::set('flight.log_errors', TRUE);
 
 /* error handling for our API */
 /*Flight::map('error', function(\Throwable $ex){
@@ -41,6 +41,7 @@ Flight::register('userService', 'UserService');
 Flight::register('workoutPlanService', 'WorkoutPlanService');
 
 /* Include all routes */
+require_once dirname(__FILE__)."/routes/middleware.php";
 require_once dirname(__FILE__)."/routes/accounts.php";
 require_once dirname(__FILE__)."/routes/users.php";
 require_once dirname(__FILE__)."/routes/workout_plans.php";
