@@ -13,6 +13,7 @@ class Config {
   const SMTP_PASSWORD = ""; //55623b8eb3d8e0213afae544d5ed1679-ef80054a-bdfa3e44
 
   const JWT_SECRET ="m1qx2KcwtcZVqn3F7upF";
+  const JWT_TOKEN_TIME = 2419200;
 }
 
 ?>
