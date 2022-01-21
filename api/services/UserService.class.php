@@ -25,6 +25,8 @@ class UserService extends BaseService{
     if (strtotime(date(Config::DATE_FORMAT)) - strtotime($db_user['token_created_at']) > 600) throw new Exception("Token expired", 400);
 
     $this->dao->update($db_user['id'], ['password' => md5($user['password']), 'token' => NULL]);
+
+    return $db_user;
 }
 
   public function forgot($user){
@@ -53,9 +55,7 @@ class UserService extends BaseService{
 
     if ($db_user['password'] != md5($user['password'])) throw new Exception("Incorrect password", 400);
 
-    $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME),"id" => $db_user["id"], "acid" => $db_user["account_id"], "rl" => $db_user["role"]], Config::JWT_SECRET);
-
-    return ["token" => $jwt];
+    return $db_user;
   }
 
   public function register($user){
@@ -113,6 +113,8 @@ class UserService extends BaseService{
 
     $this->dao->update($user['id'], ["status" => "ACTIVE", "token" => NULL]);
     $this->accountDao->update($user['account_id'], ["status" => "ACTIVE"]);
+
+    return $user;
   }
 
 }
