@@ -8,13 +8,13 @@ require_once dirname(__FILE__)."/services/AccountService.class.php";
 require_once dirname(__FILE__)."/services/UserService.class.php";
 require_once dirname(__FILE__)."/services/WorkoutPlanService.class.php";
 
-//Flight::set('flight.log_errors', TRUE);
+Flight::set('flight.log_errors', TRUE);
 
 /* error handling for our API */
-/*Flight::map('error', function(\Throwable $ex){
+Flight::map('error', function(\Throwable $ex){
   Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
 });
-*/
+
 
 /* Utility function for reading query parameters from URL  */
 Flight::map('query', function($name, $default_value = NULL){
