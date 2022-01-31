@@ -7,6 +7,7 @@ function jsonize_form(selector){
   return form_data;
 }
 
+/* decoding jwt token in javascript without using library */
 function parse_jwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
