@@ -4,19 +4,19 @@ class Config {
   const DATE_FORMAT = "Y-m-d H:i:s";
 
 public static function DB_HOST(){
-return Config::get_env("DB_HOST", "localhost");
+return Config::get_env("DB_HOST", "ebfitness-db-do-user-10688262-0.b.db.ondigitalocean.com");
 }
 public static function DB_USERNAME(){
-  return Config::get_env("DB_USERNAME", "emirbeba12");
+  return Config::get_env("DB_USERNAME", NULL);
 }
 public static function DB_PASSWORD(){
-  return Config::get_env("DB_PASSWORD", "emiremir");
+  return Config::get_env("DB_PASSWORD", NULL);
 }
 public static function DB_SCHEME(){
-  return Config::get_env("DB_SCHEME", "ebfitness");
+  return Config::get_env("DB_SCHEME", NULL);
 }
 public static function DB_PORT(){
-  return Config::get_env("DB_PORT", "3306");
+  return Config::get_env("DB_PORT", "25060");
 }
 public static function SMTP_HOST(){
   return Config::get_env("SMTP_HOST", "smtp.mailgun.org");
