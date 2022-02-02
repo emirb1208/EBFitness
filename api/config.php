@@ -16,7 +16,7 @@ class Config {
     return Config::get_env("DB_SCHEME", "ebfitness");
   }
 public static function DB_PORT(){
-  return Config::get_env("DB_PORT", "25060");
+  return Config::get_env("DB_PORT", "3306");
 }
 public static function SMTP_HOST(){
   return Config::get_env("SMTP_HOST", "smtp.mailgun.org");
