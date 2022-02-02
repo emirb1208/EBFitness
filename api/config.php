@@ -3,18 +3,18 @@ class Config {
 
   const DATE_FORMAT = "Y-m-d H:i:s";
 
-public static function DB_HOST(){
-return Config::get_env("DB_HOST", "ebfitness-db-do-user-10688262-0.b.db.ondigitalocean.com");
-}
-public static function DB_USERNAME(){
-  return Config::get_env("DB_USERNAME", NULL);
-}
-public static function DB_PASSWORD(){
-  return Config::get_env("DB_PASSWORD", NULL);
-}
-public static function DB_SCHEME(){
-  return Config::get_env("DB_SCHEME", NULL);
-}
+  public static function DB_HOST(){
+  return Config::get_env("DB_HOST", "localhost");
+  }
+  public static function DB_USERNAME(){
+    return Config::get_env("DB_USERNAME", "emirbeba12");
+  }
+  public static function DB_PASSWORD(){
+    return Config::get_env("DB_PASSWORD", "emiremir");
+  }
+  public static function DB_SCHEME(){
+    return Config::get_env("DB_SCHEME", "ebfitness");
+  }
 public static function DB_PORT(){
   return Config::get_env("DB_PORT", "25060");
 }
