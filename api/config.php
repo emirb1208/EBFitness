@@ -13,7 +13,7 @@ public static function DB_PASSWORD(){
   return Config::get_env("DB_PASSWORD", "XrxAKOcw66");
 }
 public static function DB_SCHEME(){
-  return Config::get_env("DB_SCHEME", NULL);
+  return Config::get_env("DB_SCHEME", "proba");
 }
 public static function DB_PORT(){
   return Config::get_env("DB_PORT", "3306");
