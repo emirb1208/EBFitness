@@ -1,7 +1,7 @@
 <?php
 /**
  * @OA\Get(path="/workout_plans", tags={"x-user", "workout-plans"},
- *     @OA\Parameter(required="true", type="integer", in="query", name="instructor_id", description="Id of instructor which is enrolled to that workout plan"),
+ *     @OA\Parameter(type="integer", in="query", name="instructor_id", description="Id of instructor which is enrolled to that workout plan"),
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for workout plan. Case insensitive search."),
