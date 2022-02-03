@@ -4,13 +4,13 @@ class Config {
   const DATE_FORMAT = "Y-m-d H:i:s";
 
 public static function DB_HOST(){
-  return Config::get_env("DB_HOST", "ebfitness-db-do-user-10688262-0.b.db.ondigitalocean.com");
+  return Config::get_env("DB_HOST", "db-mysql-fra1-51915-do-user-10688262-0.b.db.ondigitalocean.com");
 }
 public static function DB_USERNAME(){
   return Config::get_env("DB_USERNAME", "doadmin");
 }
 public static function DB_PASSWORD(){
-  return Config::get_env("DB_PASSWORD", "bvLJOYNmBlPKGCgV");
+  return Config::get_env("DB_PASSWORD", "1mUfZCTDOuowOgT9");
 }
 public static function DB_SCHEME(){
   return Config::get_env("DB_SCHEME", "ebfitness");
