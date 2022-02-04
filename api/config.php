@@ -4,17 +4,17 @@ class Config {
   const DATE_FORMAT = "Y-m-d H:i:s";
 
 public static function DB_HOST(){
-  return Config::get_env("DB_HOST", "localhost");
+  return Config::get_env("DB_HOST", "remotemysql.com");
 }
 public static function DB_USERNAME(){
-  return Config::get_env("DB_USERNAME", "emirbeba12");
+  return Config::get_env("DB_USERNAME", "Z7JYjYTfTv");
 }
 public static function DB_PASSWORD(){
-  return Config::get_env("DB_PASSWORD", "emiremir");
+  return Config::get_env("DB_PASSWORD", "XrxAKOcw66");
 }
-public static function DB_SCHEME(){
-  return Config::get_env("DB_SCHEME", "ebfitness");
-}
+//ublic static function DB_SCHEME(){
+  //return Config::get_env("DB_SCHEME", "ebfitness");
+//}
 public static function DB_PORT(){
   return Config::get_env("DB_PORT", "3306");
 }
