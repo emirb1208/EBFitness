@@ -22,6 +22,11 @@ Flight::route('POST /register', function(){
   Flight::json(["message" => "Confirmation email has been sent to You. Please confirm your account"]);
 });
 
+Flight::route('POST /admin/register', function(){
+  $data = Flight::request()->data->getData();
+  Flight::userService()->register($data);
+});
+
 /**
  * @OA\Get(path="/confirm/{token}", tags={"login"},
  *     @OA\Parameter(type="string", in="path", name="token", default=123, description="Temporary token for activating account"),
@@ -54,6 +59,10 @@ Flight::route('POST /login', function(){
 Flight::route('GET /users/@id', function($id){
   $user = Flight::userService()->get_by_id($id);
   Flight::json($user);
+});
+
+Flight::route('GET /admin/users', function(){
+  Flight::json(Flight::userService()->get_all());
 });
 
 /**
@@ -90,4 +99,5 @@ Flight::route('POST /forgot', function(){
 Flight::route('POST /reset', function(){
   Flight::json(Flight::jwt(Flight::userService()->reset(Flight::request()->data->getData())));
 });
+
 ?>
