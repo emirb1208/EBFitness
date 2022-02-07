@@ -7,18 +7,11 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-modal">
-                    + Add
-                </button>
-                <br>
         <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Users Table
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-user-modal">
+                      + Add
+                  </button>
+                  <div class="row" style="margin-top: 10px;">
                         <div class="table-responsive">
                           <div style="overflow-x:auto;">
                             <table class="table table-striped table-bordered table-hover" id="Users-table">
@@ -35,19 +28,13 @@
 
                                 </tbody>
                             </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</div>
+                          </div>
+                          <!-- /.table-responsive -->
+                          </div>
+                          <!-- /.row -->
+                          </div>
+                          <!-- /.container-fluid -->
+                          </div>
 <!-- /#page-wrapper -->
 <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -145,7 +132,7 @@
            }
 
            $("#Users-table tbody").html(html);
-
+           $("#Users-table").DataTable();
          }
       });
   }

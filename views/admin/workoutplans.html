@@ -7,51 +7,40 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-workout-plan-modal">
-                    + Add
-                </button>
-                <br>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Workout Plans Table
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                          <div style="overflow-x:auto;">
-                            <table class="table table-striped table-bordered table-hover" id="Workout-Plans-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Created At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.table-responsive -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</div>
+        <div class="row">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-workout-plan-modal">
+                      + Add
+                  </button>
+            <div class="row" style="margin-top: 10px;">
+                  <div class="table-responsive">
+                    <div style="overflow-x:auto;">
+                      <table class="table table-striped table-bordered table-hover" id="Workout-Plans-table">
+                          <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Description</th>
+                                  <th>Created At</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                          </tbody>
+                      </table>
+      </div>
+      <!-- /.table-responsive -->
+      </div>
+      <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+      </div>
 <!-- /#page-wrapper -->
 <div class="modal fade" id="add-workout-plan-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
           <form role="form" id="add-workout-plan">
+            <input type="hidden" name="id" />
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Add Workout Plan</h4>
@@ -79,7 +68,7 @@
 </div>
 <script type="text/javascript">
 
-  $("#add-workout-plan").validate({
+  $("#update-workout-plan").validate({
     submitHandler: function(form, event) {
       event.preventDefault();
 
@@ -88,7 +77,46 @@
     }
   });
 
+  $("#add-workout-plan").validate({
+    submitHandler: function(form, event) {
+      event.preventDefault();
+      var data = jsonize_form($(form));
+
+      console.log(data);
+      if (data.id){
+        updateWorkoutPlan(data);
+      }else{
+        addWorkoutPlan(data);
+      }
+      console.log(jsonize_form($(form)));
+      addWorkoutPlan(jsonize_form($(form)));
+    }
+  });
+
   getWorkoutPlans();
+
+  function updateWorkoutPlan(workout_plan){
+    console.log(workout_plan);
+    $.ajax({
+         url: "api/admin/workout_plans/"+workout_plan.id,
+         type: "PUT",
+         data: JSON.stringify(workout_plan),
+         contentType: "application/json",
+         beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem("token"));},
+         success: function(data) {
+           toastr.success("Workot Plan has been updated");
+           getWorkoutPlans();
+           $("#add-workout-plan").trigger("reset");
+           $("#add-workout-plan *[name='id']").val("");
+           $('#add-workout-plan-modal').modal("hide");
+           console.log(data);
+         },
+         error: function(jqXHR, textStatus, errorThrown ){
+           toastr.error(jqXHR.responseJSON.message);
+           console.log(jqXHR);
+         }
+      });
+  }
 
   function addWorkoutPlan(workout_plan){
     $.ajax({
@@ -127,7 +155,7 @@
            }
 
            $("#Workout-Plans-table tbody").html(html);
-
+           $("#Workout-Plans-table").DataTable();
          }
       });
   }
