@@ -40,7 +40,6 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
           <form role="form" id="add-workout-plan">
-            <input type="hidden" name="id" />
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Add Workout Plan</h4>
@@ -68,55 +67,16 @@
 </div>
 <script type="text/javascript">
 
-  $("#update-workout-plan").validate({
-    submitHandler: function(form, event) {
-      event.preventDefault();
-
-      console.log(jsonize_form($(form)));
-      addWorkoutPlan(jsonize_form($(form)));
-    }
-  });
-
   $("#add-workout-plan").validate({
     submitHandler: function(form, event) {
       event.preventDefault();
-      var data = jsonize_form($(form));
 
-      console.log(data);
-      if (data.id){
-        updateWorkoutPlan(data);
-      }else{
-        addWorkoutPlan(data);
-      }
       console.log(jsonize_form($(form)));
       addWorkoutPlan(jsonize_form($(form)));
     }
   });
 
   getWorkoutPlans();
-
-  function updateWorkoutPlan(workout_plan){
-    console.log(workout_plan);
-    $.ajax({
-         url: "api/admin/workout_plans/"+workout_plan.id,
-         type: "PUT",
-         data: JSON.stringify(workout_plan),
-         contentType: "application/json",
-         beforeSend: function(xhr){xhr.setRequestHeader('Authentication', localStorage.getItem("token"));},
-         success: function(data) {
-           toastr.success("Workot Plan has been updated");
-           getWorkoutPlans();
-           $("#add-workout-plan").trigger("reset");
-           $("#add-workout-plan *[name='id']").val("");
-           $('#add-workout-plan-modal').modal("hide");
-           console.log(data);
-         },
-         error: function(jqXHR, textStatus, errorThrown ){
-           toastr.error(jqXHR.responseJSON.message);
-           console.log(jqXHR);
-         }
-      });
-  }
 
   function addWorkoutPlan(workout_plan){
     $.ajax({
