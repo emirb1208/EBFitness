@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Users</h1>
+                <h1 class="page-header">User settings</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -12,14 +12,15 @@
 
 
 <div class="item">
-<p>Name</p>
-<input id="nameu" type="text" name="name" placeholder="name" required/>
-<p>Email</p>
-<input id="emailu" type="text" name="email" placeholder="email" required/>
+Name
+<input id="nameu" type="text" name="name" placeholder="name" required/>&emsp;
+Email
+<input id="emailu" type="text" name="email" placeholder="email" required/>&emsp;
 </div>
 
 <div class="item">
-<button id="article-link" type="button" onclick="updateAcc()"> UPDATE ACCOUNT </button>
+  <p></p> <br>
+<button id="article-link" type="button" class="btn btn-primary" onclick="updateAcc()"> UPDATE INFO </button>
 </div>
 </form>
                           </div>
@@ -44,6 +45,7 @@
          data: JSON.stringify(user_info),
          contentType: "application/json",
          success: function(data) {
+           toastr.success("Your data has been updated");
          },
       });
 }
