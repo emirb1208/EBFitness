@@ -25,7 +25,7 @@ class WorkoutPlanDao extends BaseDao {
           $params['search'] = strtolower($search);
         }
 
-    $query .= " ORDER BY ${order_column} ${order_direction} ";
+    $query .= "ORDER BY ${order_column} ${order_direction} ";
     $query .= "LIMIT ${limit} OFFSET ${offset}";
 
     return $this->query($query, $params);
