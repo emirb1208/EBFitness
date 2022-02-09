@@ -67,8 +67,7 @@ class UserService extends BaseService{
       "name" => $user['account'],
       "status" => "PENDING",
       "created_at" => date(Config::DATE_FORMAT),
-      "account_workoutplan_id" => 4,
-      "account_fitnessgoal_id" => 4
+      "account_workoutplan_id" => NULL
     ]);
 
     $user = parent::add([
