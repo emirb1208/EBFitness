@@ -28,6 +28,23 @@
 
                                 </tbody>
                             </table>
+<form id="update_form" role="form">
+  <fieldset>
+    <div class="item">
+      User ID
+        <input id="id" type="text" name="id" placeholder="id" required/>&emsp;
+
+      Name
+        <input id="name" type="text" name="name" placeholder="name" required/>&emsp;
+
+      Email
+        <input id="email" type="text" name="email" placeholder="email" required/>&emsp;
+    </div>
+    <br>
+  <div class="item">
+    <button id="update-link" type="button" class="btn btn-warning" onclick="updateUser()"> UPDATE USER </button>
+  </div>
+</form>
                           </div>
                           <!-- /.table-responsive -->
                           </div>
@@ -136,4 +153,25 @@
          }
       });
   }
+
+    function updateUser(){
+      var userr_info = {
+          'id' : $('#id').val(),
+          'email' : $('#email').val(),
+          'name' : $('#name').val()
+      }
+      $.ajax({
+           url: 'api/users/'+userr_info.id,
+           type: 'PUT',
+           data: JSON.stringify(userr_info),
+           contentType: "application/json",
+           success: function(data) {
+             toastr.success("User has been updated");
+             getUsers();
+             $("#update-account").trigger("reset");
+             console.log(data);
+           },
+        });
+  }
+
 </script>

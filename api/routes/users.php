@@ -100,4 +100,9 @@ Flight::route('POST /reset', function(){
   Flight::json(Flight::jwt(Flight::userService()->reset(Flight::request()->data->getData())));
 });
 
+Flight::route('PUT /users/@id', function($id){
+  $data = Flight::request()->data->getData();
+  Flight::json(Flight::userService()->update($id, $data));
+});
+
 ?>

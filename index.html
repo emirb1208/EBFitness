@@ -67,6 +67,10 @@
                               </li>
 
                               <li class="divider"></li>
+
+                              <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                              </li>
+
                               <li>
                                 <a href="#" onclick="doLogout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                               </li>
@@ -89,6 +93,9 @@
                             <li>
                                 <a href="#instructors"><i class="fa fa-user fa-fw"></i>Instructors</a>
                             </li>
+                            <li>
+                                <a href="#settings"><i class="fa fa-user fa-fw"></i>Settings</a>
+                            </li>
 
                             <li class="divider"></li>
 
@@ -105,6 +112,7 @@
               <section id="workout-plans" data-load="workout-plans.html"></section>
               <section id="fitness-goals" data-load="fitness-goals.html"></section>
               <section id="instructors" data-load="instructors.html"></section>
+              <section id="settings" data-load="settings.html"></section>
 
             </main>
 
@@ -131,18 +139,22 @@
         <script src="./assets/js/dataTables/jquery.dataTables.min.js"></script>
         <script src="./assets/js/dataTables/dataTables.bootstrap.min.js"></script>
         <script src="//cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-      
+
         <script type="text/javascript">
           $(document).ready(function() {
             var app = $.jQuerySPApp({defaultView  : "dashboard"}); // initialize
             app.run();
             if (!window.localStorage.getItem("token")){
               window.location = "login.html";
+
             }else{
               var user_info = parse_jwt(window.localStorage.getItem("token"));
+
               if (user_info.rl != "ADMIN"){
                 $(".admin-stuff").remove();
+
               }
+              localStorage.setItem("id", user_info.id);
               $('body').show();
 
               /*if (user_info.r == "ADMIN"){

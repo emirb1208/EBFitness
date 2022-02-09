@@ -1,0 +1,51 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Users</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+<form id="article_form" role="form">
+<fieldset>
+
+
+<div class="item">
+<p>Name</p>
+<input id="nameu" type="text" name="name" placeholder="name" required/>
+<p>Email</p>
+<input id="emailu" type="text" name="email" placeholder="email" required/>
+</div>
+
+<div class="item">
+<button id="article-link" type="button" onclick="updateAcc()"> UPDATE ACCOUNT </button>
+</div>
+</form>
+                          </div>
+                          <!-- /.table-responsive -->
+                          </div>
+                          <!-- /.row -->
+                          </div>
+                          <!-- /.container-fluid -->
+                          </div>
+<!-- /#page-wrapper -->
+
+<script type="text/javascript">
+
+  function updateAcc(){
+    var user_info = {
+        'email' : $('#emailu').val(),
+        'name' : $('#nameu').val()
+    }
+    $.ajax({
+         url: 'api/users/'+window.localStorage.getItem('id'),
+         type: 'PUT',
+         data: JSON.stringify(user_info),
+         contentType: "application/json",
+         success: function(data) {
+         },
+      });
+}
+
+</script>
