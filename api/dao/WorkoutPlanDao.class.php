@@ -13,7 +13,7 @@ class WorkoutPlanDao extends BaseDao {
     $params = [];
     $query = "SELECT *
               FROM workout_plans
-              WHERE 1=1";
+              WHERE 1=1 ";
 
     if(isset($instructor_id)){
     $query .=" instructor_id = :instructor_id ";
