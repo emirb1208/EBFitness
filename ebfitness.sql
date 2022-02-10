@@ -37,11 +37,11 @@ insert  into `accounts`(`id`,`name`,`status`,`created_at`,`account_workoutplan_i
 (15,'Armin','ACTIVE','2022-01-06 14:02:10',9),
 (22,'Tarik Dragunic','ACTIVE','2022-01-11 14:01:58',4),
 (23,'Edina','ACTIVE','2022-01-05 14:02:04',4),
-(26,'Burko Caffe Company','ACTIVE','2022-01-13 10:29:04',4),
-(28,'Mujo Company','ACTIVE','2022-01-13 11:04:46',4),
-(29,'Aldin Company','PENDING','2022-01-13 12:40:30',4),
-(133,'Merjem','ACTIVE','2022-01-19 10:08:00',4),
-(245,'Emir Beba','ACTIVE','2022-02-09 10:20:48',NULL);
+(26,'Burko Caffe Company','ACTIVE','2022-01-13 10:29:04',5),
+(28,'Mujo Company','ACTIVE','2022-01-13 11:04:46',10),
+(29,'Aldin Company','PENDING','2022-01-13 12:40:30',11),
+(133,'Merjem','ACTIVE','2022-01-19 10:08:00',10),
+(245,'Emir Beba','ACTIVE','2022-02-09 10:20:48',5);
 
 /*Table structure for table `instructors` */
 
@@ -53,19 +53,20 @@ CREATE TABLE `instructors` (
   `surname` varchar(512) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `job_description` varchar(512) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `awards` varchar(512) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `phone_number` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `instructors` */
 
-insert  into `instructors`(`id`,`name`,`surname`,`job_description`,`awards`) values 
-(3,'Aleksandar ','Rakic','MMA Coach','UFC LHW Champion'),
-(4,'Darko ','Stosic','Strength Trainer','/'),
-(5,'Roberto ','Soldic','Condition Trainer','Marathon Winner'),
-(6,'Khabib ','Nurmagomedov','Wrestling Coach','Olympic Wrestling Champion'),
-(7,'Francis ','Ngannou','Boxing Coach','Former Heavyweight Champion'),
-(8,'Richard ','Staudner','Mobility Coach','Bachelor of Sport, Health and Physical Activity'),
-(10,'Petr','Yan','Flexibility and Balance Coach','Bachelor of Sport');
+insert  into `instructors`(`id`,`name`,`surname`,`job_description`,`awards`,`phone_number`) values 
+(3,'Aleksandar ','Rakic','MMA Coach','UFC LHW Champion','062/223-322'),
+(4,'Darko ','Stosic','Strength Trainer','/','062/123-321'),
+(5,'Roberto ','Soldic','Condition Trainer','Marathon Winner','062/222-123'),
+(6,'Khabib ','Nurmagomedov','Wrestling Coach','Olympic Wrestling Champion','062/444-122'),
+(7,'Francis ','Ngannou','Boxing Coach','Former Heavyweight Champion','062/462-124'),
+(8,'Richard ','Staudner','Mobility Coach','Bachelor of Sport, Health and Physical Activity','062/872-125'),
+(10,'Petr','Yan','Flexibility and Balance Coach','Bachelor of Sport','062/333-127');
 
 /*Table structure for table `users` */
 
@@ -114,16 +115,17 @@ CREATE TABLE `workout_plans` (
   UNIQUE KEY `uq_workoutplan_name` (`name`),
   KEY `fk_workoutplan_instructor_id` (`instructor_id`),
   CONSTRAINT `fk_workoutplan_instructor_id` FOREIGN KEY (`instructor_id`) REFERENCES `instructors` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `workout_plans` */
 
 insert  into `workout_plans`(`id`,`name`,`description`,`created_at`,`instructor_id`) values 
 (4,'MMA Plan','Learn MMA','2022-01-13 09:57:20',3),
 (5,'Wrestling Plan','Wrestling classes and tacktics','2022-01-13 10:15:20',6),
-(9,'Plan for Strength','Improving strength','2022-01-12 10:16:34',10),
+(9,'Plan for Strength','Improving strength','2022-01-12 10:16:34',4),
 (10,'Boxing Plan','Learn Boxing basics','2022-01-19 10:17:32',7),
-(11,'Plan for Condition','Increase your condition','0000-00-00 00:00:00',5);
+(11,'Plan for Condition','Increase your condition','2022-02-10 09:51:43',5),
+(112,'Bodybuilding','Increase your muscle tone','2022-02-10 10:51:47',8);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

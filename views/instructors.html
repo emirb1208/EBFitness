@@ -17,6 +17,7 @@
                                         <th>Name</th>
                                         <th>Surname</th>
                                         <th>Job Description</th>
+                                        <th>Phone Number</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,7 +50,8 @@
                  +'<td>'+data[i].id+'</td>'
                  +'<td>'+data[i].name+'</td>'
                  +'<td>'+data[i].surname+'</td>'
-                 +'<td class="center">'+data[i].job_description+'</td></tr>';
+                 +'<td class="center">'+data[i].job_description+'</td>'
+                 +'<td class="center">'+data[i].phone_number+'</td></tr>';
            }
 
            $("#Instructors-table tbody").html(html);
